@@ -42,19 +42,16 @@ class GlobalVariablesChecker(BaseChecker):
 
 
 def is_in_main(node):
-    if not hasattr(node, 'parent'):
-        return False
-
-    parent = node.parent
     try:
-        if (isinstance(parent, astroid.node_classes.If) and
-              parent.test.left.name == '__name__' and
-              parent.test.ops[0][1].value == '__main__'):
-            return True
-        else:
-            return is_in_main(parent)
+        parent = node.statement().parent
+
+        return (
+            isinstance(parent, astroid.node_classes.If) and
+            parent.test.left.name == '__name__' and
+            parent.test.ops[0][1].value == '__main__'
+        )
     except (AttributeError, IndexError) as e:
-        return is_in_main(parent)
+        return False
 
 
 def register(linter):

@@ -38,7 +38,3 @@ def function1():
 if __name__ == '__main__':
     # This assignment is okay
     x = 10
-
-    if x > 5:
-        # This assignment is also okay
-        y = 13

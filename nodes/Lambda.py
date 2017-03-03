@@ -17,5 +17,4 @@ Example:
     - locals  -> {"args": x, "body": 3}
 """
 
-fun = lambda: 3
-fun2 = lambda x, y: x + y
+fun = lambda x: 3
